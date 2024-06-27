@@ -12,10 +12,7 @@ on:
 jobs:
   build-java:
     # Define the OS matrix for running the build on multiple operating systems
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    runs-on: ubuntu-latest
     
     steps:
       # Checkout the code from the repository
@@ -36,6 +33,14 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: khdiv/java-app
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
   publish:
     # Define that this job depends on the build-java job
     needs: build-java
@@ -45,4 +50,5 @@ jobs:
       # Dummy step to ensure the job has at least one step and the workflow is valid
       - name: Dummy step
         run: echo "This is a dummy step to keep the publish job valid"
+
 
