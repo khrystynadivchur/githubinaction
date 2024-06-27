@@ -31,6 +31,9 @@ jobs:
       # Build the project with Gradle
       - name: Build with Gradle
         run: ./gradlew build
+              # Verify the JAR file exists
+      - name: Verify JAR file exists
+        run: ls -la ./build/libs/
 
       # Build and push Docker image (Commented out as requested)
       #- name: Build and Push Docker Image
