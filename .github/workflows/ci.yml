@@ -62,7 +62,7 @@ jobs:
         with:
             image: khdiv/java-app
             registry: docker.io
-            dockerfile: Dockerfile.ci
+            dockerfile: Dockerfile
             username: ${{ secrets.DOCKER_USERNAME }}
             password: ${{ secrets.DOCKER_PASSWORD }}
 
