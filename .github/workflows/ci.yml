@@ -65,9 +65,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       # Build and push Docker image (Commented out as requested)
-      #- name: Build and push Docker image
-      #  uses: docker/build-push-action@v2
-      #  with:
-      #    context: .
-      #    push: true
-      #    tags: nanajanashia/demo-app:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: khdiv/java-app
